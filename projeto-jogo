@@ -1,0 +1,63 @@
+import random
+
+print("\n==== JOGO DE ADIVINHAÇÃO ====")
+
+print("| Escolha a Dificuldade |")
+print("1 - Fácil")
+print("2 - Médio")
+print("3 - Difícil")
+
+dificuldade = input("\nDigite a opção: ")
+
+if dificuldade == "1":
+    max_numero = 10
+    max_tentativas = 10
+    print("Você escolheu o modo FÁCIL")
+
+elif dificuldade == "2":
+    max_numero = 50
+    max_tentativas = 7
+    print("Você escolheu o modo MÉDIO")
+
+elif dificuldade == "3":
+    max_numero = 100
+    max_tentativas = 5
+    print("Você escolheu o modo DIFÍCIL")
+
+else:
+    print("Opção inválida!")
+    exit()
+
+numero_secreto = random.randint(1, max_numero)
+
+tentativas = 0
+
+print("\nAdivinhe o número entre 1 e", max_numero)
+
+while tentativas < max_tentativas:
+
+    try:
+        palpite = int(input("\nDigite um número: "))
+    except ValueError:
+        print("Você precisa digitar um número!")
+        continue
+
+    tentativas += 1
+
+    if palpite == numero_secreto:
+        print("Parabéns, você acertou!")
+        print("Tentativas usadas:", tentativas)
+        break
+    
+    elif palpite < numero_secreto:
+        print("O número secreto é MAIOR.")
+                
+    else:
+        print("O número secreto é MENOR.")
+
+    print("Tentativas restantes:", max_tentativas - tentativas)
+
+if palpite != numero_secreto:
+    print("Você perdeu!")
+    print("\nO número secreto era:", numero_secreto)
+        
